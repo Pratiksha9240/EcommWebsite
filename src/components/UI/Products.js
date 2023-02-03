@@ -1,3 +1,6 @@
+import { Button } from 'react-bootstrap';
+import classes from './Products.module.css';
+
 const Products = () => {
 
     const productsArr = [
@@ -44,8 +47,7 @@ const Products = () => {
         
         ]
 
-        const productsList = productsArr.map(p => (<li><h1>{p.title}</h1><img src={p.imageUrl} alt = {p.title}></img></li>));
-        console.log(productsList);
+        const productsList = productsArr.map(p => (<><div className={classes.div}><h3>{p.title}</h3><img src={p.imageUrl} alt = {p.title} className={classes.img}/><div className={classes.div1}><h5>${p.price}<Button variant='primary' className={classes.button}>Add to Cart</Button></h5></div></div></>));
 
     return(
         <ul>
