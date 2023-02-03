@@ -1,25 +1,26 @@
 import "./App.css";
-import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import Products from "./components/UI/Products";
 import Footer from "./components/Layout/Footer";
+import MyNavbar from "./components/Layout/MyNavbar";
+import SeeCartButton from "./components/Cart/SeeCartButton";
+import MyCart from "./components/Cart/MyCart";
+import { useState } from "react";
 
 function App() {
+
+  const [showCart,setShowCart] = useState(false);
+
+  const showMyCartHandler = () => {
+    setShowCart(true);
+  }
+  const closeMyCartHandler = () => {
+    setShowCart(false);
+  }
+
   return (
     <>
-      <Navbar bg="dark" expand="lg" variant="dark">
-        <Container>
-          <Navbar.Brand href="#home">E-Commerce App</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#link">Store</Nav.Link>
-              <Nav.Link href="#link">About</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-          <Button variant="light">Cart</Button>
-        </Container>
-      </Navbar>
+      <MyNavbar onShow = {showMyCartHandler}></MyNavbar>
+      {showCart && <MyCart onClose = {closeMyCartHandler}/>}
       <h1
         style={{
           marginLeft: "600px",
@@ -30,6 +31,7 @@ function App() {
         The Generics
       </h1>
       <Products></Products>
+      <SeeCartButton/>
       <Footer></Footer>
     </>
   );
