@@ -1,9 +1,9 @@
 import { Button } from "react-bootstrap";
 import './SeeCartButton.css'
 
-const SeeCartButton = () => {
+const SeeCartButton = (props) => {
     return(
-        <Button variant="success" className="button">See the Cart</Button>
+        <Button variant="success" className="button" onClick={props.onShow}>See the Cart</Button>
     )
 }
 

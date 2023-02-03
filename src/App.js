@@ -20,7 +20,7 @@ function App() {
   return (
     <>
       <MyNavbar onShow = {showMyCartHandler}></MyNavbar>
-      {showCart && <MyCart onClose = {closeMyCartHandler}/>}
+      {showCart && <MyCart onClose = {closeMyCartHandler} onShow = {showCart}/>}
       <h1
         style={{
           marginLeft: "600px",
@@ -31,7 +31,7 @@ function App() {
         The Generics
       </h1>
       <Products></Products>
-      <SeeCartButton/>
+      <SeeCartButton onShow = {showMyCartHandler}/>
       <Footer></Footer>
     </>
   );
