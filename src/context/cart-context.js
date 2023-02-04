@@ -47,9 +47,7 @@ const cartReducer = (state,action) => {
           
           let updatedItems;
           updatedItems = state.items.filter(item => item.id !== action.id);
-          
-            console.log("Updated Items ",updatedItems)
-
+      
           return {
             items: updatedItems,
           };

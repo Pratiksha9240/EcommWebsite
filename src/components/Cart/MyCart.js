@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { Modal, Button } from "react-bootstrap";
 import CartContext from "../../context/cart-context";
-import MyModal from "../UI/MyModal";
 
 const MyCart = (props) => {
   const cartElements = [
@@ -41,6 +40,10 @@ const MyCart = (props) => {
 
   const ctx = useContext(CartContext);
 
+  const totalPrice = ctx.items.reduce((currNumber, item) => {
+    return currNumber + item.price;
+  }, 0);
+
   const productsList = ctx.items.map((p) => (
     <div id={p.title}>
       <h3>{p.title}</h3>
@@ -70,6 +73,8 @@ const MyCart = (props) => {
         </Modal.Body>
 
         <Modal.Footer>
+          <div>Total Price</div>
+        <div>${totalPrice}</div>
           <Button variant="secondary" onClick={props.onClose}>
             Close
           </Button>

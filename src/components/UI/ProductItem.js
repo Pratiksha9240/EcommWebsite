@@ -12,7 +12,8 @@ const ProductItem = (props) => {
           id: props.title,
           title: props.title,
           price: props.price,
-          imageUrl: props.imageUrl
+          imageUrl: props.imageUrl,
+          amount: 1
       })
       }
   return (
