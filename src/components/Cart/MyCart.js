@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { Modal, Button } from "react-bootstrap";
+import CartContext from "../../context/cart-context";
 import MyModal from "../UI/MyModal";
 
 const MyCart = (props) => {
@@ -37,7 +39,9 @@ const MyCart = (props) => {
     },
   ];
 
-  const productsList = cartElements.map((p) => (
+  const ctx = useContext(CartContext);
+
+  const productsList = ctx.items.map((p) => (
     <div id={p.title}>
       <h3>{p.title}</h3>
       <img src={p.imageUrl} alt={p.title} />
@@ -45,8 +49,8 @@ const MyCart = (props) => {
       <Button
         variant="danger"
         onClick={() => {
-          const e = document.getElementById(`${p.title}`);
-          e.remove();
+          // const e = document.getElementById(`${p.title}`);
+          ctx.removeItem(p.title);
         }}
       >
         Remove

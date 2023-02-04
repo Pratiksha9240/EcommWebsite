@@ -1,59 +1,56 @@
-import { Button } from 'react-bootstrap';
-import classes from './Products.module.css';
+import classes from "./Products.module.css";
+import ProductItem from "./ProductItem";
 
 const Products = () => {
 
-    const productsArr = [
+  const productsArr = [
+    {
+      title: "Colors",
 
-        {
-        
-        title: 'Colors',
-        
-        price: 100,
-        
-        imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png'
-        
-        },
-        
-        {
-        
-        title: 'Black and white Colors',
-        
-        price: 50,
-        
-        imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%202.png',
-        
-        },
-        
-        {
-        
-        title: 'Yellow and Black Colors',
-        
-        price: 70,
-        
-        imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
-        
-        },
-        
-        {
-        
-        title: 'Blue Color',
-        
-        price: 100,
-        
-        imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',
-        
-        }
-        
-        ]
+      price: 100,
 
-        const productsList = productsArr.map(p => (<div className={classes.div}><h3>{p.title}</h3><img src={p.imageUrl} alt = {p.title} className={classes.img}/><div className={classes.div1}><h5>${p.price}<Button variant='primary' className={classes.button}>Add to Cart</Button></h5></div></div>));
+      imageUrl:
+        "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
+    },
 
-    return(
-        <ul>
-            {productsList}
-        </ul>
-    );
-}
+    {
+      title: "Black and white Colors",
+
+      price: 50,
+
+      imageUrl:
+        "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
+    },
+
+    {
+      title: "Yellow and Black Colors",
+
+      price: 70,
+
+      imageUrl:
+        "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
+    },
+
+    {
+      title: "Blue Color",
+
+      price: 100,
+
+      imageUrl:
+        "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
+    },
+  ];
+
+
+  
+
+  const productsList = productsArr.map((p) => (
+    <div className={classes.div}>
+      <ProductItem title = {p.title} price = {p.price} imageUrl = {p.imageUrl}/>
+    </div>
+  ));
+
+  return <ul>{productsList}</ul>;
+};
 
 export default Products;

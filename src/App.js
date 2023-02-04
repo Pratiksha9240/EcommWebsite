@@ -5,6 +5,7 @@ import MyNavbar from "./components/Layout/MyNavbar";
 import SeeCartButton from "./components/Cart/SeeCartButton";
 import MyCart from "./components/Cart/MyCart";
 import { useState } from "react";
+import { CartProvider } from "./context/cart-context";
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
   }
 
   return (
-    <>
+    <CartProvider>
       <MyNavbar onShow = {showMyCartHandler}></MyNavbar>
       {showCart && <MyCart onClose = {closeMyCartHandler} onShow = {showCart}/>}
       <h1
@@ -33,7 +34,7 @@ function App() {
       <Products></Products>
       <SeeCartButton onShow = {showMyCartHandler}/>
       <Footer></Footer>
-    </>
+    </CartProvider>
   );
 }
 
