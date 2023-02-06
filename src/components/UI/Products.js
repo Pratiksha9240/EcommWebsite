@@ -1,5 +1,6 @@
 import classes from "./Products.module.css";
 import ProductItem from "./ProductItem";
+import { Link } from "react-router-dom";
 
 const Products = () => {
 
@@ -46,7 +47,7 @@ const Products = () => {
 
   const productsList = productsArr.map((p) => (
     <div className={classes.div}>
-      <ProductItem title = {p.title} price = {p.price} imageUrl = {p.imageUrl}/>
+      <Link to={`/store/${p.title}`}><ProductItem title = {p.title} price = {p.price} imageUrl = {p.imageUrl}/></Link>
     </div>
   ));
 

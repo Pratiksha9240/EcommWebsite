@@ -10,6 +10,7 @@ import AboutUs from "./pages/AboutUs";
 import { Route } from "react-router-dom";
 import Home from "./pages/Home";
 import ContactUs from "./pages/ContactUs";
+import ProductDetail from "./pages/ProductDetail";
 
 function App() {
   const [showCart, setShowCart] = useState(false);
@@ -35,6 +36,9 @@ function App() {
         The Generics
       </h1>
       <Route path="/store">
+        <Route path="/store/:productId">
+          <ProductDetail></ProductDetail>
+        </Route>
         <Products></Products>
         <SeeCartButton onShow={showMyCartHandler} />
       </Route>
