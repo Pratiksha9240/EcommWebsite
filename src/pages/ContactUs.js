@@ -1,38 +1,74 @@
+import { useState } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 
 const ContactUs = () => {
 
-    return(
-        <Container>
-        <Form>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Name: </Form.Label>
-        <Form.Control type="text" placeholder="Enter name" />
-        {/* <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text> */}
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address: </Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
-      </Form.Group>
+    const [name,setName] = useState('');
+    const [email,setEmail] = useState('');
+    const [pNumber,setPnumber] = useState('');
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Phone number: </Form.Label>
-        <Form.Control type="number" placeholder="Ph number" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
+    const nameChangeHandler = (event) => {
+        setName(event.target.value);
+    }
+
+    const emailChangeHandler = (event) => {
+        setEmail(event.target.value);
+    }
+
+    const numberChangeHandler = (event) => {
+        setPnumber(event.target.value);
+    }
+
+    const submitHandler = async(event) => {
+        event.preventDefault();
+        const data = {
+            name: {name},
+            email: {email},
+            phone_number: {pNumber}
+        }
+        const response = await fetch('https://react-http-b29b9-default-rtdb.firebaseio.com/contacts.json',{
+            method:'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-type':'application/json'
+            }
+        })
+
+        setEmail('');
+        setName('');
+        setPnumber('');
+
+        console.log(response);
+    }
+
+  return (
+    <Container style={{ backgroundColor: "lightblue", marginBottom: '50px' }}>
+      <Form onSubmit={submitHandler}>
+        <Form.Group className="mb-3" controlId="formBasicName">
+          <Form.Label>Name: </Form.Label>
+          <Form.Control type="text" placeholder="Enter name" value={name} onChange={nameChangeHandler} />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email address: </Form.Label>
+          <Form.Control type="email" placeholder="Enter email" value={email} onChange={emailChangeHandler}/>
+          <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
+          </Form.Text>
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicPhNumber">
+          <Form.Label>Phone number: </Form.Label>
+          <Form.Control type="number" placeholder="Ph number" value={pNumber} onChange={numberChangeHandler}/>
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicCheckbox">
+          <Form.Check type="checkbox" label="Check me out" />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
     </Container>
-    )
-}
+  );
+};
 
 export default ContactUs;
