@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Offcanvas } from "react-bootstrap";
 import CartContext from "../../context/cart-context";
 
 const MyCart = (props) => {
