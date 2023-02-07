@@ -67,6 +67,7 @@ const Home = () => {
           </Card.Body>
         </Card>
       </div>
+      
     </>
   );
 };

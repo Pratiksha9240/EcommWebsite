@@ -7,7 +7,7 @@ import MyCart from "./components/Cart/MyCart";
 import { useState } from "react";
 import { CartProvider } from "./context/cart-context";
 import AboutUs from "./pages/AboutUs";
-import { Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import ContactUs from "./pages/ContactUs";
 import ProductDetail from "./pages/ProductDetail";
@@ -35,22 +35,23 @@ function App() {
       >
         The Generics
       </h1>
-      <Route path="/store">
-        <Route path="/store/:productId">
-          <ProductDetail></ProductDetail>
-        </Route>
-        <Products></Products>
-        <SeeCartButton onShow={showMyCartHandler} />
+      <Routes>
+
+      <Route path="/" element={<Home/>} />
+
+      <Route path="/store" element={<><Products></Products><SeeCartButton onShow={showMyCartHandler}></SeeCartButton></>} />
+       
+      <Route path="/aboutUs" element={<AboutUs/>} />
+       
+      <Route path="/contactUs" element={<ContactUs/>} />
+       
+      <Route path="/home" element={<Home/>} />
+        
+      <Route path="/store/:productId/*" element={<ProductDetail/>}>
+        
       </Route>
-      <Route path="/aboutUs">
-        <AboutUs></AboutUs>
-      </Route>
-      <Route path="/contactUs">
-        <ContactUs></ContactUs>
-      </Route>
-      <Route path="/home">
-        <Home></Home>
-      </Route>
+      </Routes>
+      
       <Footer></Footer>
     </CartProvider>
   );
