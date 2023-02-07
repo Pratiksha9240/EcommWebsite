@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { Form, Button, Container } from "react-bootstrap";
+import {Prompt} from 'react-router-dom';
 
 const ContactUs = () => {
 
     const [name,setName] = useState('');
     const [email,setEmail] = useState('');
     const [pNumber,setPnumber] = useState('');
+    const [isFocus,setIsFocus] = useState(false);
 
     const nameChangeHandler = (event) => {
         setName(event.target.value);
@@ -41,9 +43,15 @@ const ContactUs = () => {
         console.log(response);
     }
 
+    const onFocusHandler = () => {
+      setIsFocus(true);
+    }
+
   return (
+    <Fragment>
+      <Prompt when={isFocus} message = {() => 'Are You Sure'}></Prompt>
     <Container style={{ backgroundColor: "lightblue", marginBottom: '50px' }}>
-      <Form onSubmit={submitHandler}>
+      <Form onFocus={onFocusHandler} onSubmit={submitHandler}>
         <Form.Group className="mb-3" controlId="formBasicName">
           <Form.Label>Name: </Form.Label>
           <Form.Control type="text" placeholder="Enter name" value={name} onChange={nameChangeHandler} />
@@ -68,6 +76,7 @@ const ContactUs = () => {
         </Button>
       </Form>
     </Container>
+    </Fragment>
   );
 };
 

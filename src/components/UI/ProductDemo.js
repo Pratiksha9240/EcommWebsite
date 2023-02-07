@@ -1,7 +1,13 @@
-const ProductDemo = () => {
-    return(
-        <h1>This is Demo Page</h1>
-    )
-}
+import './ProductDemo.css';
+
+const ProductDemo = (props) => {
+  return (
+    <div className="div">
+      <h1> {props.title}</h1>
+      <img src={props.imageUrl} alt={props.title} />
+      <div>{props.price}</div>
+    </div>
+  );
+};
 
 export default ProductDemo;
