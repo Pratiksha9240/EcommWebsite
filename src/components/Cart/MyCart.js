@@ -1,8 +1,13 @@
 import { useContext } from "react";
 import { Modal, Button, Offcanvas } from "react-bootstrap";
+import AuthContext from "../../context/auth-context";
 import CartContext from "../../context/cart-context";
 
 const MyCart = (props) => {
+
+  const authCtx = useContext(AuthContext);
+  const email = authCtx.emailId.replace(/[|&;$%@"<>.()+,]/g, "");
+
   const cartElements = [
     {
       title: "Colors",
@@ -39,6 +44,21 @@ const MyCart = (props) => {
   ];
 
   const ctx = useContext(CartContext);
+
+  const response = fetch(`https://crudcrud.com/api/2675dd5555d9419e80fb632e0d2c019d/${email}`,{
+    headers: {
+      'Content-Type' : 'application/json'
+    }
+  })
+
+  const data = response.json();
+
+  if(!response.ok){
+    console.log(data.error.message)
+  }
+
+  
+  console.log(data);
 
   const productsList = ctx.items.map((p) => (
     <div id={p.title}>
