@@ -3,7 +3,7 @@ import { Card, Button } from "react-bootstrap";
 import home from "../assets/home.jpg";
 import home1 from "../assets/home1.jpg";
 import home2 from "../assets/home2.jpg";
-// import home from "../assets/home.jpg";
+
 
 const Home = () => {
   return (

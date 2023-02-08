@@ -1,5 +1,6 @@
-import { useParams } from "react-router-dom";
+import { useParams, Route } from "react-router-dom";
 import ProductDemo from "../components/UI/ProductDemo";
+
 
 
 const ProductDetail = () => {
@@ -52,13 +53,13 @@ const ProductDetail = () => {
   }
 
   return (
-    <>
+    <center>
       <h1>Product Details</h1>
       <ProductDemo title={product.title} price={product.price} imageUrl={product.imageUrl}/>
-      {/* <Routes>
-        <Route path={'/details'} element={<ProductDemo />} />
-      </Routes> */}
-    </>
+        <Route path={`/store/${product.title}/details`}>
+          {/* <ProductDemo title={product.title} price={product.price} imageUrl={product.imageUrl}></ProductDemo> */}
+        </Route>
+    </center>
   );
 };
 

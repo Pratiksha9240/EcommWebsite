@@ -11,6 +11,7 @@ import { Route } from "react-router-dom";
 import Home from "./pages/Home";
 import ContactUs from "./pages/ContactUs";
 import ProductDetail from "./pages/ProductDetail";
+import Login from "./pages/Authentication/Login";
 
 function App() {
   const [showCart, setShowCart] = useState(false);
@@ -35,24 +36,8 @@ function App() {
       >
         The Generics
       </h1>
-      
-      {/* <Route path="/" element={<Home/>} />
 
-      <Route path="/store" element={<><Products></Products><SeeCartButton onShow={showMyCartHandler}></SeeCartButton></>} />
-       
-      <Route path="/aboutUs" element={<AboutUs/>} />
-       
-      <Route path="/contactUs" element={<ContactUs/>} />
-       
-      <Route path="/home" element={<Home/>} />
-        
-      <Route path="/store/:productId/*" element={<ProductDetail/>}>
-        
-      </Route> */}
-      <Route path="/store">
-      <Route path="/:productId/*">
-          <ProductDetail></ProductDetail>
-        </Route>
+      <Route exact path="/store">
         <Products></Products>
         <SeeCartButton onShow={showMyCartHandler} />
       </Route>
@@ -65,9 +50,15 @@ function App() {
       <Route path="/home">
         <Home></Home>
       </Route>
-      {/* <Route path="/store/:productId/*">
-          <ProductDetail></ProductDetail>
-        </Route> */}
+
+      <Route path="/store/:productId">
+        <ProductDetail></ProductDetail>
+      </Route>
+
+      <Route path="/login">
+        <Login></Login>
+      </Route>
+
 
       <Footer></Footer>
     </CartProvider>
