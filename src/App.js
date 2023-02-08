@@ -4,7 +4,7 @@ import Footer from "./components/Layout/Footer";
 import MyNavbar from "./components/Layout/MyNavbar";
 import SeeCartButton from "./components/Cart/SeeCartButton";
 import MyCart from "./components/Cart/MyCart";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { CartProvider } from "./context/cart-context";
 import AboutUs from "./pages/AboutUs";
 import { Route } from "react-router-dom";
@@ -12,9 +12,12 @@ import Home from "./pages/Home";
 import ContactUs from "./pages/ContactUs";
 import ProductDetail from "./pages/ProductDetail";
 import Login from "./pages/Authentication/Login";
+import AuthContext from "./context/auth-context";
 
 function App() {
   const [showCart, setShowCart] = useState(false);
+
+  const authCtx = useContext(AuthContext);
 
   const showMyCartHandler = () => {
     setShowCart(true);
@@ -37,9 +40,10 @@ function App() {
         The Generics
       </h1>
 
-      <Route exact path="/store">
-        <Products></Products>
-        <SeeCartButton onShow={showMyCartHandler} />
+       <Route exact path="/store">
+       {authCtx.isLoggedIn &&
+        <><Products></Products><SeeCartButton onShow={showMyCartHandler} /></>}
+        {!authCtx.isLoggedIn && <Login></Login>}
       </Route>
       <Route path="/aboutUs">
         <AboutUs></AboutUs>
